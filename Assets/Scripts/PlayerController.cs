@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
   float horizontalInput;
   float forwardInput;
   float GetAxis;
+  public GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,13 @@ public class PlayerController : MonoBehaviour
      transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
      //rotates car based on horizontal input
      transform.Rotate(Vector3.up,turnSpeed * horizontalInput * Time.deltaTime);
-
+  }
+  
+  void OnCollisionEnter(Collision collision)
+     {
+    if(collision.gameObject.CompareTag("Obstacle"))
+    {
+       Destroy(gameObject);
     }
+     }
 }
